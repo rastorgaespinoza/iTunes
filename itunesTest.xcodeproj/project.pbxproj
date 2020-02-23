@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,9 @@
 		FB97C55F23FE23990067A2F7 /* SearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C55923FE23990067A2F7 /* SearchModels.swift */; };
 		FB97C56023FE23990067A2F7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C55A23FE23990067A2F7 /* SearchViewController.swift */; };
 		FB97C56123FE23990067A2F7 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C55B23FE23990067A2F7 /* SearchInteractor.swift */; };
+		FB97C56423FE2A1D0067A2F7 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C56323FE2A1D0067A2F7 /* iTunes.swift */; };
+		FB97C56623FE2A300067A2F7 /* CodableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C56523FE2A300067A2F7 /* CodableResponse.swift */; };
+		FB97C56923FE2AA90067A2F7 /* MediaResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C56823FE2AA90067A2F7 /* MediaResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		FB97C55923FE23990067A2F7 /* SearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModels.swift; sourceTree = "<group>"; };
 		FB97C55A23FE23990067A2F7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FB97C55B23FE23990067A2F7 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		FB97C56323FE2A1D0067A2F7 /* iTunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
+		FB97C56523FE2A300067A2F7 /* CodableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableResponse.swift; sourceTree = "<group>"; };
+		FB97C56823FE2AA90067A2F7 /* MediaResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +103,6 @@
 				E81000DB66CF4BB608EE4BE7 /* Pods-itunesTestTests.debug.xcconfig */,
 				F6A9B352A513FEE1E83BF833 /* Pods-itunesTestTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -124,6 +129,8 @@
 		FB97C53123FE227E0067A2F7 /* itunesTest */ = {
 			isa = PBXGroup;
 			children = (
+				FB97C56723FE2A800067A2F7 /* Model */,
+				FB97C56223FE2A040067A2F7 /* Network */,
 				FB97C55423FE234F0067A2F7 /* Scenes */,
 				FB97C53223FE227E0067A2F7 /* AppDelegate.swift */,
 				FB97C53423FE227E0067A2F7 /* SceneDelegate.swift */,
@@ -164,6 +171,23 @@
 				FB97C55B23FE23990067A2F7 /* SearchInteractor.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		FB97C56223FE2A040067A2F7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FB97C56323FE2A1D0067A2F7 /* iTunes.swift */,
+				FB97C56523FE2A300067A2F7 /* CodableResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FB97C56723FE2A800067A2F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB97C56823FE2AA90067A2F7 /* MediaResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +366,10 @@
 				FB97C55D23FE23990067A2F7 /* SearchWorker.swift in Sources */,
 				FB97C53323FE227E0067A2F7 /* AppDelegate.swift in Sources */,
 				FB97C55C23FE23990067A2F7 /* SearchPresenter.swift in Sources */,
+				FB97C56623FE2A300067A2F7 /* CodableResponse.swift in Sources */,
 				FB97C53523FE227E0067A2F7 /* SceneDelegate.swift in Sources */,
+				FB97C56423FE2A1D0067A2F7 /* iTunes.swift in Sources */,
+				FB97C56923FE2AA90067A2F7 /* MediaResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
