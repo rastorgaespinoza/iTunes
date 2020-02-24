@@ -14,18 +14,29 @@ import UIKit
 
 protocol SearchPresentationLogic
 {
-  func presentSomething(response: Search.Something.Response)
+    func presentFetchedSearch(response: Search.FetchSearch.Response)
+    func presentError(responseError: SearchError)
 }
 
 class SearchPresenter: SearchPresentationLogic
 {
-  weak var viewController: SearchDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Search.Something.Response)
-  {
-    let viewModel = Search.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: SearchDisplayLogic?
+    
+    // MARK: Do something
+    func presentFetchedSearch(response: Search.FetchSearch.Response)
+    {
+        var displayedSearchResult: [Search.FetchSearch.ViewModel.DisplayedSearch] = []
+        for resultSearch in response.media {
+            
+            let displayedSearch = Search.FetchSearch.ViewModel.DisplayedSearch(withMediaResult: resultSearch)
+            displayedSearchResult.append(displayedSearch)
+        }
+        
+        let viewModel = Search.FetchSearch.ViewModel(displayedSearch: displayedSearchResult)
+        viewController?.displayFetchedSearch(viewModel: viewModel)
+    }
+    
+    func presentError(responseError: SearchError) {
+        viewController?.displayError(responseError: responseError)
+    }
 }

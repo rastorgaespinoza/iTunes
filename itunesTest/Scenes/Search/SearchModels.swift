@@ -14,18 +14,35 @@ import UIKit
 
 enum Search
 {
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
+    // MARK: Use cases
+    
+    enum FetchSearch
     {
+        struct Request
+        {
+            let searchString: String
+        }
+        struct Response
+        {
+            var media: [MediaResult]
+        }
+        struct ViewModel
+        {
+            struct DisplayedSearch {
+                var trackName: String
+                var artistName: String
+                var genre: String
+                var artworkURL: URL
+                
+                init(withMediaResult media: MediaResult) {
+                    trackName = media.trackName ?? ""
+                    artistName = media.artistName ?? ""
+                    genre = media.primaryGenreName ?? ""
+                    artworkURL = media.artworkUrl60 ?? URL(string: "")!
+                }
+            }
+            
+            var displayedSearch: [DisplayedSearch]
+        }
     }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
-  }
 }

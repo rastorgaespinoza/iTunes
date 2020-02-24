@@ -14,76 +14,124 @@ import UIKit
 
 protocol SearchDisplayLogic: class
 {
-  func displaySomething(viewModel: Search.Something.ViewModel)
+    func displayFetchedSearch(viewModel: Search.FetchSearch.ViewModel)
+    func displayError(responseError: SearchError)
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic
 {
-  var interactor: SearchBusinessLogic?
-  var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = SearchInteractor()
-    let presenter = SearchPresenter()
-    let router = SearchRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var resultSearchController = UISearchController()
+    var displayedSearch: [Search.FetchSearch.ViewModel.DisplayedSearch] = []
+    
+    var interactor: SearchBusinessLogic?
+    var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Search.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Search.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = SearchInteractor()
+        let presenter = SearchPresenter()
+        let router = SearchRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    // MARK: Routing
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+    
+
+    func fetchSearch(query: String)
+    {
+        let request = Search.FetchSearch.Request(searchString: query)
+        interactor?.fetchSearch(request: request)
+    }
+    
+    func displayFetchedSearch(viewModel: Search.FetchSearch.ViewModel)
+    {
+        displayedSearch = viewModel.displayedSearch
+        tableView.reloadData()
+    }
+    
+    func displayError(responseError: SearchError) {
+        InfoHud.show(self, text: responseError.localizedDescription)
+    }
+    
+}
+
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayedSearch.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellResult", for: indexPath) as! ResultTableViewCell
+        let media = displayedSearch[indexPath.row]
+
+        cell.viewModel = ResultTableViewCell.ViewModel(name: media.artistName, trackName: media.trackName, image: media.artworkURL)
+
+        return cell
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.resultSearchController.searchBar.endEditing(true)
+        router?.routeToSearchDetail(segue: nil)
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        fetchSearch(query: searchController.searchBar.text ?? "")
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        fetchSearch(query: searchText)
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        resultSearchController.dimsBackgroundDuringPresentation = false
+        searchBar.resignFirstResponder()
+    }
 }

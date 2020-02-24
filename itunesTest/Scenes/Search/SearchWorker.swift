@@ -11,10 +11,48 @@
 //
 
 import UIKit
+import Moya
 
 class SearchWorker
 {
-  func doSomeWork()
-  {
-  }
+    func fetchSearch(searchString: String, completionHandler: @escaping ([MediaResult]? , _ error: SearchError? ) -> Void)
+
+    {
+        let provider = MoyaProvider<Itunes>()
+        
+        provider.request(.search(byString: searchString)) { [weak self] result in
+            guard self != nil else { return }
+            
+            switch result {
+            case .success(let response):
+                do {
+                    let resultItunes = try response.map(ItunesResponse<MediaResult>.self)
+                    print("el resultado fue: ")
+                    print(resultItunes)
+                    completionHandler(resultItunes.results, nil)
+                } catch {
+                    print("Ocurrió un error al tratar de serializar")
+                    print(error)
+                    completionHandler(nil, SearchError.CannotFetch(error.localizedDescription))
+                }
+            case .failure(let error):
+                print("Ocurrió un error")
+                print(error)
+                completionHandler(nil, SearchError.CannotFetch(error.localizedDescription))
+            }
+        }
+    }
+}
+
+//MARK: - Posts store API
+protocol SearchStoreProtocol {
+    //    MARK: - CRUD Operations - Optional error
+    func fetchSearch(completionHandler: @escaping([MediaResult], SearchError?) -> Void)
+}
+//MARK: - Posts store CRUD operation errors
+enum SearchError: Equatable, Error {
+    case CannotFetch(String)
+    case CannotCreate(String)
+    case CannotUpdate(String)
+    case CannotDelete(String)
 }

@@ -14,28 +14,32 @@ import UIKit
 
 protocol SearchBusinessLogic
 {
-  func doSomething(request: Search.Something.Request)
+    func fetchSearch(request: Search.FetchSearch.Request)
 }
 
 protocol SearchDataStore
 {
-  //var name: String { get set }
+    var mediaResult: [MediaResult]? { get set }
 }
 
 class SearchInteractor: SearchBusinessLogic, SearchDataStore
 {
   var presenter: SearchPresentationLogic?
   var worker: SearchWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Search.Something.Request)
+  var mediaResult: [MediaResult]?
+
+  func fetchSearch(request: Search.FetchSearch.Request)
   {
     worker = SearchWorker()
-    worker?.doSomeWork()
-    
-    let response = Search.Something.Response()
-    presenter?.presentSomething(response: response)
+    worker?.fetchSearch(searchString: request.searchString, completionHandler: { (mediaResult: [MediaResult]?, error: SearchError?) in
+        guard error == nil else {
+            print(error!)
+            self.presenter?.presentError(responseError: error!)
+            return
+        }
+        let response = Search.FetchSearch.Response(media: mediaResult ?? [MediaResult]())
+        self.mediaResult = mediaResult
+        self.presenter?.presentFetchedSearch(response: response)
+    })
   }
 }
