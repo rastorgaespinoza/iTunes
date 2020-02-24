@@ -20,24 +20,7 @@ class WebViewTableViewCell: UITableViewCell {
         webView.uiDelegate = self
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: &myContext)
     }
-    
-//    func webViewIsLoading() -> Bool {
-//        return webView.isLoading
-//    }
-//    
-//    func updateProgressBar() {
-//        while(webView.isLoading) {
-//            progressBar.progress = Float(webView.estimatedProgress / 1.0)
-//        }
-//        progressBar.isHidden = true
-//                    
-//        //            while(webView.estimatedProgress < 1.0) {
-//        //                let estimated = Float(webView.estimatedProgress)
-//        //                progressBar.setProgress(estimated, animated: true)
-//        //            }
-//        //            progressBar.isHidden = true
-//    }
-    
+
     var viewModel: ViewModel? {
         didSet {
             guard let viewModel = viewModel else {

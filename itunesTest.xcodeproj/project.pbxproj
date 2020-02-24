@@ -20,9 +20,6 @@
 		FB3BD5CD24034BCC0063B2FA /* SearchDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5C724034BCC0063B2FA /* SearchDetailModels.swift */; };
 		FB3BD5CE24034BCC0063B2FA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5C824034BCC0063B2FA /* SearchDetailViewController.swift */; };
 		FB3BD5CF24034BCC0063B2FA /* SearchDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5C924034BCC0063B2FA /* SearchDetailInteractor.swift */; };
-		FB3BD5D224034C870063B2FA /* ArtworkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5D124034C870063B2FA /* ArtworkTableViewCell.swift */; };
-		FB3BD5D424034CA10063B2FA /* DetailArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5D324034CA10063B2FA /* DetailArtistTableViewCell.swift */; };
-		FB3BD5D624034CB90063B2FA /* TrackNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5D524034CB90063B2FA /* TrackNameTableViewCell.swift */; };
 		FB3BD5D8240356A80063B2FA /* WebViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BD5D7240356A80063B2FA /* WebViewTableViewCell.swift */; };
 		FB97C53323FE227E0067A2F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C53223FE227E0067A2F7 /* AppDelegate.swift */; };
 		FB97C53523FE227E0067A2F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB97C53423FE227E0067A2F7 /* SceneDelegate.swift */; };
@@ -69,9 +66,6 @@
 		FB3BD5C724034BCC0063B2FA /* SearchDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailModels.swift; sourceTree = "<group>"; };
 		FB3BD5C824034BCC0063B2FA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		FB3BD5C924034BCC0063B2FA /* SearchDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailInteractor.swift; sourceTree = "<group>"; };
-		FB3BD5D124034C870063B2FA /* ArtworkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkTableViewCell.swift; sourceTree = "<group>"; };
-		FB3BD5D324034CA10063B2FA /* DetailArtistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArtistTableViewCell.swift; sourceTree = "<group>"; };
-		FB3BD5D524034CB90063B2FA /* TrackNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackNameTableViewCell.swift; sourceTree = "<group>"; };
 		FB3BD5D7240356A80063B2FA /* WebViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTableViewCell.swift; sourceTree = "<group>"; };
 		FB97C52F23FE227E0067A2F7 /* itunesTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = itunesTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB97C53223FE227E0067A2F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,9 +163,6 @@
 		FB3BD5D024034C660063B2FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FB3BD5D124034C870063B2FA /* ArtworkTableViewCell.swift */,
-				FB3BD5D324034CA10063B2FA /* DetailArtistTableViewCell.swift */,
-				FB3BD5D524034CB90063B2FA /* TrackNameTableViewCell.swift */,
 				FB3BD5D7240356A80063B2FA /* WebViewTableViewCell.swift */,
 			);
 			path = Views;
@@ -442,9 +433,7 @@
 				FB97C55D23FE23990067A2F7 /* SearchWorker.swift in Sources */,
 				FB3BD5CE24034BCC0063B2FA /* SearchDetailViewController.swift in Sources */,
 				FB97C53323FE227E0067A2F7 /* AppDelegate.swift in Sources */,
-				FB3BD5D224034C870063B2FA /* ArtworkTableViewCell.swift in Sources */,
 				FB3BD5CD24034BCC0063B2FA /* SearchDetailModels.swift in Sources */,
-				FB3BD5D624034CB90063B2FA /* TrackNameTableViewCell.swift in Sources */,
 				FB97C55C23FE23990067A2F7 /* SearchPresenter.swift in Sources */,
 				FB3BD5CF24034BCC0063B2FA /* SearchDetailInteractor.swift in Sources */,
 				FB97C56623FE2A300067A2F7 /* CodableResponse.swift in Sources */,
@@ -457,7 +446,6 @@
 				FB3BD5CC24034BCC0063B2FA /* SearchDetailRouter.swift in Sources */,
 				FB392DE82402FA0100973647 /* DetailViewController.swift in Sources */,
 				FB3BD5AE240321980063B2FA /* InfoHud.swift in Sources */,
-				FB3BD5D424034CA10063B2FA /* DetailArtistTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

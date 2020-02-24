@@ -102,17 +102,3 @@ extension SearchDetailViewController: UITableViewDataSource {
         
     }
 }
-
-//extension SearchDetailViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let cellWebView = cell as? WebViewTableViewCell {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                if (cellWebView.webViewIsLoading()) {
-//                    cellWebView.updateProgressBar()
-//                }
-//            }
-//            
-//        }
-//    }
-//
-//}
