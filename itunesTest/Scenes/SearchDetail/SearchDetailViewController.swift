@@ -11,7 +11,6 @@
 //
 import UIKit
 import Kingfisher
-import AVFoundation
 
 protocol SearchDetailDisplayLogic: class
 {
@@ -22,8 +21,7 @@ class SearchDetailViewController: UIViewController, SearchDetailDisplayLogic
 {
     @IBOutlet weak var tableView: UITableView!
     
-    let player = AVQueuePlayer()
-    var urlPreview: URL?
+
     var interactor: SearchDetailBusinessLogic?
     var router: (NSObjectProtocol & SearchDetailRoutingLogic & SearchDetailDataPassing)?
     var media: MediaResult!
@@ -84,41 +82,37 @@ class SearchDetailViewController: UIViewController, SearchDetailDisplayLogic
     {
         self.title = router?.dataStore?.media?.trackName ?? ""
         self.media = router?.dataStore?.media
-
-        //    let request = SearchDetail.FetchDetail.Request()
-        //    interactor?.doSomething(request: request)
     }
     
     func displayDetailSearch(viewModel: SearchDetail.FetchDetail.ViewModel)
     {
-//        self.title = viewModel.title
-//        self.navigationItem.title = viewModel.title
     }
 }
 
 extension SearchDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellImage = tableView.dequeueReusableCell(withIdentifier: "cellImage", for: indexPath) as! ArtworkTableViewCell
-        let cellDetail = tableView.dequeueReusableCell(withIdentifier: "cellDetail", for: indexPath) as! DetailArtistTableViewCell
-        let cellBand = tableView.dequeueReusableCell(withIdentifier: "cellTitle", for: indexPath)
-        let cellNameSong = tableView.dequeueReusableCell(withIdentifier: "cellNameSong", for: indexPath)
         let cellWebView = tableView.dequeueReusableCell(withIdentifier: "cellWebView", for: indexPath) as! WebViewTableViewCell
+
+        cellWebView.viewModel = WebViewTableViewCell.ViewModel(url: media.trackViewUrl!)
+        return cellWebView
         
-        if indexPath.row == 0 {
-            cellImage.viewModel = ArtworkTableViewCell.ViewModel(artworkURL: media.artworkUrl100!)
-            return cellImage
-        } else if indexPath.row == 1 {
-            cellDetail.viewModel = DetailArtistTableViewCell.ViewModel(trackName: media.trackName ?? "", artistName: media.artistName ?? "")
-            return cellDetail
-        } else if indexPath.row == 2 {
-            return cellBand
-        } else {
-            cellWebView.viewModel = WebViewTableViewCell.ViewModel(url: media.trackViewUrl!)
-            return cellWebView
-        }
     }
 }
+
+//extension SearchDetailViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if let cellWebView = cell as? WebViewTableViewCell {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                if (cellWebView.webViewIsLoading()) {
+//                    cellWebView.updateProgressBar()
+//                }
+//            }
+//            
+//        }
+//    }
+//
+//}

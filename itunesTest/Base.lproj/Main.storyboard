@@ -226,14 +226,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellWebView" id="mEj-db-4Un" customClass="WebViewTableViewCell" customModule="itunesTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="315.5" width="414" height="740"/>
+                                        <rect key="frame" x="0.0" y="315.5" width="414" height="702"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mEj-db-4Un" id="POZ-to-zgr">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="740"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ObU-QD-RCf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                                </progressView>
                                                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ns-ak-CnI">
-                                                    <rect key="frame" x="20" y="20" width="374" height="700"/>
+                                                    <rect key="frame" x="0.0" y="2" width="414" height="700"/>
                                                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="700" id="RL8-14-yZU"/>
@@ -245,13 +248,17 @@
                                                 </wkWebView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4ns-ak-CnI" secondAttribute="trailing" constant="20" symbolic="YES" id="5Zm-M2-NJq"/>
-                                                <constraint firstItem="4ns-ak-CnI" firstAttribute="top" secondItem="POZ-to-zgr" secondAttribute="top" constant="20" symbolic="YES" id="7KL-1V-Vkw"/>
-                                                <constraint firstItem="4ns-ak-CnI" firstAttribute="leading" secondItem="POZ-to-zgr" secondAttribute="leading" constant="20" symbolic="YES" id="dyC-XL-FPJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="4ns-ak-CnI" secondAttribute="bottom" constant="20" symbolic="YES" id="xVD-it-Rf0"/>
+                                                <constraint firstAttribute="trailing" secondItem="ObU-QD-RCf" secondAttribute="trailing" id="2Nl-y2-1W8"/>
+                                                <constraint firstAttribute="trailing" secondItem="4ns-ak-CnI" secondAttribute="trailing" id="5Zm-M2-NJq"/>
+                                                <constraint firstItem="4ns-ak-CnI" firstAttribute="top" secondItem="POZ-to-zgr" secondAttribute="top" constant="2" id="7KL-1V-Vkw"/>
+                                                <constraint firstItem="ObU-QD-RCf" firstAttribute="top" secondItem="POZ-to-zgr" secondAttribute="top" id="ULL-bB-IsX"/>
+                                                <constraint firstItem="4ns-ak-CnI" firstAttribute="leading" secondItem="POZ-to-zgr" secondAttribute="leading" id="dyC-XL-FPJ"/>
+                                                <constraint firstItem="ObU-QD-RCf" firstAttribute="leading" secondItem="POZ-to-zgr" secondAttribute="leading" id="hed-FM-iVt"/>
+                                                <constraint firstAttribute="bottom" secondItem="4ns-ak-CnI" secondAttribute="bottom" id="xVD-it-Rf0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="progressBar" destination="ObU-QD-RCf" id="mDA-EF-NFd"/>
                                             <outlet property="webView" destination="4ns-ak-CnI" id="hUL-bf-clY"/>
                                         </connections>
                                     </tableViewCell>
@@ -271,7 +278,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QbP-QV-UV8"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vbC-tS-GDE"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="vbC-tS-GDE"/>
                     <connections>
                         <outlet property="tableView" destination="Eaa-Ol-SRY" id="EQ9-SL-ZQo"/>
                     </connections>
